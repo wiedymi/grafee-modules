@@ -63,6 +63,7 @@ export function setup(
   const timeoutLink = (timeout) => new ApolloLinkTimeout(timeout);
 
   const defaultLinks = ApolloLink.from([
+    httpLink,
     ({ query }) => {
       const definition = getMainDefinition(query);
       return (
@@ -74,7 +75,6 @@ export function setup(
     errorLink,
     timeoutLink(opts.timeout),
     loggerLink(opts.logger),
-    httpLink,
   ]);
 
   const client = new ApolloClient({
