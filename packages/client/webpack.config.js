@@ -8,6 +8,8 @@ const sharedConfig = (env, platform) => {
     output: {
       filename: `${platform}.js`,
       path: path.resolve(__dirname, "build"),
+      library: platform,
+      libraryTarget: "umd",
     },
     resolve: {
       modules: [path.resolve(__dirname, "src"), "node_modules"],
