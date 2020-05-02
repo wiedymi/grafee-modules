@@ -4,7 +4,8 @@
   "description": "",
   "main": "./build/index.js",
   "scripts": {
-    "prepare": "yarn && webpack --config webpack.config.js",
+    "prepare": "yarn install && yarn build",
+    "build": "webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,7 +25,7 @@
     "graphql-validation": "^2.2.2",
     "module-alias": "^2.2.2"
   },
-  "peerDependencies": {
+  "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
