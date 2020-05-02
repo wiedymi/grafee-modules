@@ -40,6 +40,6 @@ const sharedClientConfig = {
 };
 
 const client = (env = {}) =>
-  webpackMerge(sharedConfig(env, "client"), sharedClientConfig);
+  webpackMerge(sharedConfig(env, "index"), sharedClientConfig);
 
 module.exports = [client];

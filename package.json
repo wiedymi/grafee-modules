@@ -5,8 +5,8 @@
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint --fix",
     "push": "./publish.sh",
-    "prepare": "yarn clean && lerna run prepare",
-    "clean": "rimraf packages/**/build"
+    "prepare": "yarn clean && lerna run build",
+    "clean": "rimraf packages/**/build && rimraf packages/**/node_modules"
   },
   "devDependencies": {
     "lerna": "^3.20.2",

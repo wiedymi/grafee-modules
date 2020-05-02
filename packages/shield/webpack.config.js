@@ -1,5 +1,6 @@
 const path = require("path");
 const webpackMerge = require("webpack-merge");
+const nodeExternals = require("webpack-node-externals");
 
 const sharedConfig = (env, platform) => {
   const config = {
@@ -24,22 +25,26 @@ const sharedConfig = (env, platform) => {
   return config;
 };
 
-const sharedClientConfig = {
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx?)$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-        options: {
-          envName: "client",
+const build = (env = {}) =>
+  webpackMerge(sharedConfig(env, "index"), {
+    target: "node",
+    node: {
+      __dirname: false,
+    },
+    devtool: false,
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loader: "babel-loader",
+          options: {
+            envName: "server",
+          },
         },
-      },
-    ],
-  },
-};
+      ],
+    },
+    externals: [nodeExternals({ importType: "commonjs" })],
+  });
 
-const client = (env = {}) =>
-  webpackMerge(sharedConfig(env, "client"), sharedClientConfig);
-
-module.exports = [client];
+module.exports = [build];
