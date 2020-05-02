@@ -21,16 +21,16 @@ export function setup(
   }
 
   const httpLink = createUploadLink({
-    uri: urls.HTTP_API
+    uri: urls.HTTP_API,
   });
 
-  let wsLink = props => props;
+  let wsLink = (props) => props;
   if (urls.WS_API) {
     wsLink = new WebSocketLink({
       uri: urls.WS_API,
       options: {
-        reconnect: true
-      }
+        reconnect: true,
+      },
     });
   }
   const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -44,12 +44,12 @@ export function setup(
     }
   });
 
-  const loggerLink = isActive => {
+  const loggerLink = (isActive) => {
     if (isActive) {
       return new ApolloLink((operation, forward) => {
         console.log(`GraphQL Request: ${operation.operationName}`);
         operation.setContext({ start: new Date() });
-        return forward(operation).map(response => {
+        return forward(operation).map((response) => {
           const responseTime = new Date() - operation.getContext().start;
           console.log(`GraphQL Response took: ${responseTime}`);
           return response;
@@ -57,10 +57,10 @@ export function setup(
       });
     }
 
-    return props => props;
+    return (props) => props;
   };
 
-  const timeoutLink = timeout => new ApolloLinkTimeout(timeout);
+  const timeoutLink = (timeout) => new ApolloLinkTimeout(timeout);
 
   const defaultLinks = ApolloLink.from([
     ({ query }) => {
@@ -70,21 +70,21 @@ export function setup(
         definition.operation === "subscription"
       );
     },
-    httpLink,
     wsLink,
     errorLink,
     timeoutLink(opts.timeout),
-    loggerLink(opts.logger)
+    loggerLink(opts.logger),
+    httpLink,
   ]);
 
   const client = new ApolloClient({
     link: links ? links : defaultLinks,
     cache,
-    typeDefs,
-    resolvers
+    typeDefs: opts.typeDefs,
+    resolvers: opts.resolvers,
   });
 
-  return App => {
+  return (App) => {
     return (
       <ApolloProvider client={client}>
         <App />

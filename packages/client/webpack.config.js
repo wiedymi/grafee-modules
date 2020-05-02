@@ -6,11 +6,12 @@ const sharedConfig = (env, platform) => {
   const config = {
     entry: `./src/index.js`,
     mode: env.ENVIRONMENT ? "production" : "development",
+    target: "web",
     output: {
       filename: `${platform}.js`,
       path: path.resolve(__dirname, "build"),
-      library: platform,
-      libraryTarget: "window",
+      library: "",
+      libraryTarget: "umd",
     },
     resolve: {
       modules: [path.resolve(__dirname, "src"), "node_modules"],
