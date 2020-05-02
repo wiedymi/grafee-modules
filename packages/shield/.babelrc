@@ -1,0 +1,7 @@
+{
+  "env": {
+    "client": {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    }
+  }
+}
