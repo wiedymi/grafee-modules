@@ -1,5 +1,6 @@
 const path = require("path");
 const webpackMerge = require("webpack-merge");
+const webpack = require("webpack");
 
 const sharedConfig = (env, platform) => {
   const config = {
@@ -9,12 +10,19 @@ const sharedConfig = (env, platform) => {
       filename: `${platform}.js`,
       path: path.resolve(__dirname, "build"),
       library: platform,
-      libraryTarget: "umd",
+      libraryTarget: "window",
     },
     resolve: {
       modules: [path.resolve(__dirname, "src"), "node_modules"],
       extensions: [".jsx", ".js"],
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        "process.env.NODE_ENV": env ? '"development"' : '"production"',
+        "process.env.BROWSER": JSON.stringify(true),
+        __DEV__: env,
+      }),
+    ],
   };
 
   if (!env.prod) {
