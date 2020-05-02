@@ -1,6 +1,6 @@
 {
   "name": "@grafee/core",
-  "version": "1.0.7",
+  "version": "1.0.12",
   "description": "",
   "main": "./build/index.js",
   "scripts": {
@@ -45,5 +45,6 @@
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2"
-  }
+  },
+  "gitHead": "0767fd68fe6ce84ccf5eb98005fc0f7229205de8"
 }
