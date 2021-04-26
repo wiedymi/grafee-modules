@@ -1,4 +1,4 @@
-function clasters(file) {
+function clasters(pathToFile) {
   const cluster = require('cluster')
   const os = require('os')
 
@@ -18,9 +18,7 @@ function clasters(file) {
       cluster.fork()
     })
   } else {
-    const root = process.cwd()
-
-    require(root + file)
+    require(pathToFile)
   }
 }
 
