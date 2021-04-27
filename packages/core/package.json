@@ -1,8 +1,8 @@
 {
   "name": "@grafee/core",
-  "version": "1.0.15",
+  "version": "1.0.24",
   "description": "",
-  "main": "./build/index.js",
+  "main": "./index.js",
   "scripts": {
     "prepare": "yarn build",
     "build": "webpack --config webpack.config.js",
@@ -15,15 +15,15 @@
   "author": "wiedymi",
   "license": "MIT",
   "dependencies": {
-    "@graphql-modules/core": "^0.7.15",
-    "apollo-server-express": "^2.12.0",
-    "esm": "^3.2.25",
-    "express": "^4.17.1",
-    "graphql": "^15.0.0",
-    "graphql-directive": "^0.2.1",
-    "graphql-middleware": "^4.0.2",
-    "graphql-validation": "^2.2.2",
-    "module-alias": "^2.2.2"
+    "@graphql-modules/core": "0.7.15",
+    "apollo-server-express": "2.12.0",
+    "esm": "3.2.25",
+    "express": "4.17.1",
+    "graphql-directive": "0.2.1",
+    "graphql-middleware": "4.0.2",
+    "graphql-validation": "2.2.2",
+    "module-alias": "2.2.2",
+    "graphql": "14.5.8"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

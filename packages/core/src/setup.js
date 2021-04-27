@@ -33,7 +33,6 @@ export function setup(file, clastersOptions = false) {
   const VALID_EXTENSIONS = ['graphql', 'graphqls', 'gql', 'gqls']
 
   function handleModule(m, filename) {
-    const root = process.cwd()
     const content = readFileSync(filename, 'utf-8')
 
     m.exports = parse(content)
